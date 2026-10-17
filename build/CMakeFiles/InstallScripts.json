@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/ale/Programming/SPH-fluid-simulation/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
