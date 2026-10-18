@@ -18,6 +18,7 @@ set(RLIMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/rlImGui)
 add_executable(sph-simulation
     src/main.cpp
 	src/fluidsimulation.cpp
+	src/particlerenderer.cpp
 )
 
 target_sources(sph-simulation PRIVATE
@@ -38,7 +39,9 @@ target_include_directories(sph-simulation PRIVATE
 
 # Find raylib installed on the system
 find_package(raylib CONFIG REQUIRED)
+find_package(OpenMP REQUIRED)
 
+target_link_libraries(sph-simulation PRIVATE OpenMP::OpenMP_CXX)
 target_link_libraries(sph-simulation PRIVATE raylib)
 
 # Compiler warnings

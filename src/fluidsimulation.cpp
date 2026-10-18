@@ -2,16 +2,15 @@
 #include "SPHKernels.hpp"
 
 void FluidSimulation::calculateDensities() {
-  for (Particle &p : particles) {
+#pragma omp parallel for schedule(static)
+  for (std::size_t i = 0; i < particles.size(); ++i) {
+    Particle &p = particles[i];
     p.density = 0.0f;
 
     spatialGrid.forEachNearby(p.position, [&](std::size_t j) {
       const Particle &other = particles[j];
-
       const Vector2 delta = Vector2Subtract(p.position, other.position);
-
       const float distanceSquared = delta.x * delta.x + delta.y * delta.y;
-
       if (distanceSquared < smoothingRadius * smoothingRadius) {
         p.density +=
             other.mass * SPHKernels::poly6(distanceSquared, smoothingRadius);
@@ -30,12 +29,16 @@ void FluidSimulation::calculatePressures() {
 }
 
 void FluidSimulation::calculatePressureForces() {
+#pragma omp parallel for schedule(static)
   // Start with gravity for every particle.
-  for (Particle &p : particles) {
-    p.acceleration = gravity;
+  for (std::size_t i = 0; i < particles.size(); ++i) {
+    particles[i].acceleration = gravity;
   }
 
-  for (Particle &p : particles) {
+#pragma omp parallel for schedule(static)
+  for (std::size_t i = 0; i < particles.size(); ++i) {
+    Particle &p = particles[i];
+
     spatialGrid.forEachNearby(p.position, [&](std::size_t j) {
       const Particle &other = particles[j];
 
@@ -62,7 +65,9 @@ void FluidSimulation::calculatePressureForces() {
 }
 
 void FluidSimulation::calculateViscosityForces() {
-  for (Particle &p : particles) {
+#pragma omp parallel for schedule(static)
+  for (std::size_t i = 0; i < particles.size(); ++i) {
+    Particle &p = particles[i];
     const float densityI = std::max(p.density, 1e-6f);
 
     spatialGrid.forEachNearby(p.position, [&](std::size_t j) {
@@ -160,18 +165,12 @@ void FluidSimulation::update(double dt) {
 }
 
 void FluidSimulation::render() const {
-  for (const Particle &p : particles) {
-    DrawCircleLines(static_cast<int>(p.position.x),
-                    static_cast<int>(p.position.y), smoothingRadius,
-                    Fade(WHITE, 0.15f));
-  }
-
-  for (const Particle &p : particles) {
-    const float normalized = Clamp(p.pressure / 20.0f, 0.0f, 1.0f);
-
-    const Color color = ColorLerp(BLUE, RED, normalized);
-
-    DrawCircleV(p.position, particleRadius, color);
+  if (showSmoothingRadius) {
+    for (const Particle &p : particles) {
+      DrawCircleLines(static_cast<int>(p.position.x),
+                      static_cast<int>(p.position.y), smoothingRadius,
+                      Fade(WHITE, 0.15f));
+    }
   }
 
   DrawRectangleLines(0, 0, static_cast<int>(width), static_cast<int>(height),
@@ -240,4 +239,17 @@ void FluidSimulation::setMouseRadius(float value) { mouseRadius = value; }
 
 float FluidSimulation::getMouseStrength() const { return mouseStrength; }
 void FluidSimulation::setMouseStrength(float value) { mouseStrength = value; }
+
+bool FluidSimulation::getShowSmoothingRadius() const {
+  return showSmoothingRadius;
+}
+void FluidSimulation::setShowSmoothingRadius(bool value) {
+  showSmoothingRadius = value;
+}
+
+bool FluidSimulation::getShowParticles() const { return showParticles; }
+void FluidSimulation::setShowParticles(bool value) { showParticles = value; }
+
+float FluidSimulation::getParticleRadius() const { return particleRadius; }
+
 // ----------------------------------------------------------------------------

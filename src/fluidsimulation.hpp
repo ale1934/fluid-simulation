@@ -5,13 +5,13 @@
 class FluidSimulation {
 private:
   std::vector<Particle> particles;
-  Vector2 gravity = {0.0f, 50.0f};
+  Vector2 gravity = {0.0f, 0.0f};
   SpatialGrid spatialGrid;
 
   float width = 400.0f;
   float height = 400.0f;
   float particleRadius = 4.0f;
-  float smoothingRadius = 25.0f;
+  float smoothingRadius = 15.0f;
 
   float targetDensity = 0.001f;
   float pressureStiffness = 6000.0f;
@@ -21,6 +21,9 @@ private:
   float mouseRadius = 100.0f;
   float mouseStrength = 1500.0f;
   bool mouseGrab = false;
+
+  bool showSmoothingRadius = true;
+  bool showParticles = true;
 
   void calculateDensities();
   void calculatePressures();
@@ -56,4 +59,14 @@ public:
 
   float getMouseStrength() const;
   void setMouseStrength(float value);
+
+  bool getShowSmoothingRadius() const;
+  void setShowSmoothingRadius(bool value);
+
+  bool getShowParticles() const;
+  void setShowParticles(bool value);
+
+  const std::vector<Particle> &getParticles() const { return particles; }
+
+  float getParticleRadius() const;
 };
