@@ -10,7 +10,7 @@ private:
 
   float width = 400.0f;
   float height = 400.0f;
-  float particleRadius = 4.0f;
+  float particleRadius = 3.0f;
   float smoothingRadius = 15.0f;
 
   float targetDensity = 0.001f;
@@ -22,8 +22,13 @@ private:
   float mouseStrength = 1500.0f;
   bool mouseGrab = false;
 
-  bool showSmoothingRadius = true;
+  bool showSmoothingRadius = false;
   bool showParticles = true;
+
+  Color minPressureColor = BLUE;
+  Color maxPressureColor = RED;
+
+  float pressureDivisor = 50.0f;
 
   void calculateDensities();
   void calculatePressures();
@@ -65,6 +70,15 @@ public:
 
   bool getShowParticles() const;
   void setShowParticles(bool value);
+
+  Color getMinPressureColor() const;
+  void setMinPressureColor(Color value);
+
+  Color getMaxPressureColor() const;
+  void setMaxPressureColor(Color value);
+
+  float getPressureDivisor() const;
+  void setPressureDivisor(float value);
 
   const std::vector<Particle> &getParticles() const { return particles; }
 

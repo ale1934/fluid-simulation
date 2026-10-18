@@ -107,14 +107,14 @@ FluidSimulation::FluidSimulation(int particleCount, float boundaryWidth,
   width = boundaryWidth;
   height = boundaryHeight;
 
-  const int columns = 30;
+  const int columns = 80;
   const float spacing = particleRadius * 2.0f;
 
   for (int i = 0; i < particleCount; ++i) {
     Particle p;
 
-    p.position = {width / 2 + (i % columns) * spacing,
-                  height / 2 + ((float)i / columns) * spacing};
+    p.position = {50 + (i % columns) * spacing,
+                  50 + ((float)i / columns) * spacing};
 
     particles.push_back(p);
   }
@@ -167,9 +167,12 @@ void FluidSimulation::update(double dt) {
 void FluidSimulation::render() const {
   if (showSmoothingRadius) {
     for (const Particle &p : particles) {
+      const float normalized = Clamp(p.pressure / 60.0f, 0.0f, 1.0f);
+      const Color color = ColorLerp(BLUE, RED, normalized);
+
       DrawCircleLines(static_cast<int>(p.position.x),
                       static_cast<int>(p.position.y), smoothingRadius,
-                      Fade(WHITE, 0.15f));
+                      Fade(color, 0.15f));
     }
   }
 
@@ -249,6 +252,21 @@ void FluidSimulation::setShowSmoothingRadius(bool value) {
 
 bool FluidSimulation::getShowParticles() const { return showParticles; }
 void FluidSimulation::setShowParticles(bool value) { showParticles = value; }
+
+Color FluidSimulation::getMinPressureColor() const { return minPressureColor; }
+void FluidSimulation::setMinPressureColor(Color value) {
+  minPressureColor = value;
+}
+
+Color FluidSimulation::getMaxPressureColor() const { return maxPressureColor; }
+void FluidSimulation::setMaxPressureColor(Color value) {
+  maxPressureColor = value;
+}
+
+float FluidSimulation::getPressureDivisor() const { return pressureDivisor; }
+void FluidSimulation::setPressureDivisor(float value) {
+  pressureDivisor = value;
+}
 
 float FluidSimulation::getParticleRadius() const { return particleRadius; }
 

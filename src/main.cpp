@@ -1,7 +1,7 @@
 #include "../external/rlImGui/rlImGui.h"
+#include "../external/rlImGui/rlImGuiColors.h"
 #include <imgui.h>
 
-#include "fluidsimulation.hpp"
 #include "particlerenderer.hpp"
 #include <algorithm>
 #include <omp.h>
@@ -15,13 +15,13 @@ int main() {
   SetExitKey(KEY_ESCAPE);
   SetTargetFPS(0);
 
-  omp_set_num_threads(4);
+  omp_set_num_threads(8);
 
   ParticleRenderer particleRenderer;
 
   rlImGuiSetup(true);
 
-  FluidSimulation simulation(2000, screenWidth, screenHeight + 20);
+  FluidSimulation simulation(7000, screenWidth, screenHeight + 20);
 
   bool showUI = false;
   bool paused = false;
@@ -36,17 +36,27 @@ int main() {
       showUI = !showUI;
     }
 
+    rlImGuiBegin();
+
+    const bool imguiWantsMouse = ImGui::GetIO().WantCaptureMouse;
+
     double t0 = GetTime();
 
     // Update the simulation unless paused.
     if (!paused) {
       float dt = std::min(GetFrameTime(), 1.0f / GetFPS());
 
-      Vector2 mousePosition = GetMousePosition();
+      if (!imguiWantsMouse) {
+        Vector2 mousePosition = GetMousePosition();
 
-      // Around the simulation step:
-      simulation.handleMouse(mousePosition,
-                             IsMouseButtonDown(MOUSE_BUTTON_LEFT));
+        // Around the simulation step:
+        simulation.handleMouse(mousePosition,
+                               IsMouseButtonDown(MOUSE_BUTTON_LEFT));
+
+      } else {
+        simulation.handleMouse(GetMousePosition(), false);
+      }
+
       simulation.update(dt);
       tUpdate = GetTime() - t0;
     }
@@ -56,9 +66,10 @@ int main() {
 
     t0 = GetTime();
     if (simulation.getShowParticles()) {
-      particleRenderer.draw(
-          simulation.getParticles(), static_cast<float>(screenWidth),
-          static_cast<float>(screenHeight), simulation.getParticleRadius());
+      particleRenderer.draw(simulation.getParticles(),
+                            static_cast<float>(screenWidth),
+                            static_cast<float>(screenHeight),
+                            simulation.getParticleRadius(), simulation);
     }
     tDraw = GetTime() - t0;
 
@@ -68,8 +79,6 @@ int main() {
     simulation.render();
 
     DrawFPS(10, 10);
-
-    rlImGuiBegin();
 
     if (showUI) {
       ImGui::Begin("SPH Simulation Controls", &showUI);
@@ -83,7 +92,7 @@ int main() {
       ImGui::Text("Physics Parameters");
 
       float gravity = simulation.getGravity();
-      if (ImGui::SliderFloat("Gravity", &gravity, 0.0f, 2000.0f)) {
+      if (ImGui::SliderFloat("Gravity", &gravity, 0.0f, 200.0f)) {
         simulation.setGravity(gravity);
       }
 
@@ -120,6 +129,12 @@ int main() {
         simulation.setMouseStrength(strength);
       }
 
+      float pressureDivisor = simulation.getPressureDivisor();
+      if (ImGui::SliderFloat("Pressure Divisor", &pressureDivisor, 50.0f,
+                             300.0f)) {
+        simulation.setPressureDivisor(pressureDivisor);
+      }
+
       bool showSmoothingRadius = simulation.getShowSmoothingRadius();
       if (ImGui::Checkbox("Show Smoothing Radius", &showSmoothingRadius)) {
         simulation.setShowSmoothingRadius(showSmoothingRadius);
@@ -128,6 +143,28 @@ int main() {
       bool showParticles = simulation.getShowParticles();
       if (ImGui::Checkbox("Show Particles", &showParticles)) {
         simulation.setShowParticles(showParticles);
+      }
+
+      Color minPressureColor = simulation.getMinPressureColor();
+      ImVec4 minColor = rlImGuiColors::Convert(minPressureColor);
+      float minCol[4] = {minColor.x, minColor.y, minColor.z, minColor.w};
+      if (ImGui::ColorEdit4("Minimum Pressure Color", minCol)) {
+        simulation.setMinPressureColor(
+            Color{(unsigned char)(minCol[0] * 255.0f),
+                  (unsigned char)(minCol[1] * 255.0f),
+                  (unsigned char)(minCol[2] * 255.0f),
+                  (unsigned char)(minCol[3] * 255.0f)});
+      }
+
+      Color maxPressureColor = simulation.getMaxPressureColor();
+      ImVec4 maxColor = rlImGuiColors::Convert(maxPressureColor);
+      float maxCol[4] = {maxColor.x, maxColor.y, maxColor.z, maxColor.w};
+      if (ImGui::ColorEdit4("Maximum Pressure Color", maxCol)) {
+        simulation.setMaxPressureColor(
+            Color{(unsigned char)(maxCol[0] * 255.0f),
+                  (unsigned char)(maxCol[1] * 255.0f),
+                  (unsigned char)(maxCol[2] * 255.0f),
+                  (unsigned char)(maxCol[3] * 255.0f)});
       }
 
       ImGui::End();
