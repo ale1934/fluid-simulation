@@ -26,9 +26,7 @@ int main() {
   bool showUI = false;
   bool paused = false;
 
-  double tUpdate = 0.0, tDraw = 0.0;
-
-  TraceLog(LOG_INFO, "Max Threads: %d", omp_get_max_threads());
+  bool showFps = false;
 
   while (!WindowShouldClose()) {
     // Toggle the UI with Tab.
@@ -39,8 +37,6 @@ int main() {
     rlImGuiBegin();
 
     const bool imguiWantsMouse = ImGui::GetIO().WantCaptureMouse;
-
-    double t0 = GetTime();
 
     // Update the simulation unless paused.
     if (!paused) {
@@ -58,27 +54,22 @@ int main() {
       }
 
       simulation.update(dt);
-      tUpdate = GetTime() - t0;
     }
 
     BeginDrawing();
     ClearBackground(BLACK);
 
-    t0 = GetTime();
     if (simulation.getShowParticles()) {
       particleRenderer.draw(simulation.getParticles(),
                             static_cast<float>(screenWidth),
                             static_cast<float>(screenHeight),
                             simulation.getParticleRadius(), simulation);
     }
-    tDraw = GetTime() - t0;
-
-    TraceLog(LOG_INFO, "update: %.2f ms  draw: %.2f ms", tUpdate * 1000.0,
-             tDraw * 1000.0);
 
     simulation.render();
 
-    DrawFPS(10, 10);
+    if (showFps)
+      DrawFPS(10, 10);
 
     if (showUI) {
       ImGui::Begin("SPH Simulation Controls", &showUI);
@@ -130,7 +121,7 @@ int main() {
       }
 
       float pressureDivisor = simulation.getPressureDivisor();
-      if (ImGui::SliderFloat("Pressure Divisor", &pressureDivisor, 50.0f,
+      if (ImGui::SliderFloat("Pressure Divisor", &pressureDivisor, 50.f,
                              300.0f)) {
         simulation.setPressureDivisor(pressureDivisor);
       }
@@ -145,27 +136,25 @@ int main() {
         simulation.setShowParticles(showParticles);
       }
 
-      Color minPressureColor = simulation.getMinPressureColor();
-      ImVec4 minColor = rlImGuiColors::Convert(minPressureColor);
-      float minCol[4] = {minColor.x, minColor.y, minColor.z, minColor.w};
-      if (ImGui::ColorEdit4("Minimum Pressure Color", minCol)) {
-        simulation.setMinPressureColor(
-            Color{(unsigned char)(minCol[0] * 255.0f),
-                  (unsigned char)(minCol[1] * 255.0f),
-                  (unsigned char)(minCol[2] * 255.0f),
-                  (unsigned char)(minCol[3] * 255.0f)});
-      }
+      ImGui::Checkbox("Show Fps", &showFps);
 
-      Color maxPressureColor = simulation.getMaxPressureColor();
-      ImVec4 maxColor = rlImGuiColors::Convert(maxPressureColor);
-      float maxCol[4] = {maxColor.x, maxColor.y, maxColor.z, maxColor.w};
-      if (ImGui::ColorEdit4("Maximum Pressure Color", maxCol)) {
-        simulation.setMaxPressureColor(
-            Color{(unsigned char)(maxCol[0] * 255.0f),
-                  (unsigned char)(maxCol[1] * 255.0f),
-                  (unsigned char)(maxCol[2] * 255.0f),
-                  (unsigned char)(maxCol[3] * 255.0f)});
-      }
+      auto editColor = [](const char *label, Color color, auto setter) {
+        ImVec4 c = rlImGuiColors::Convert(color);
+        float col[4] = {c.x, c.y, c.z, c.w};
+
+        if (ImGui::ColorEdit4(label, col)) {
+          setter(Color{static_cast<unsigned char>(col[0] * 255.0f),
+                       static_cast<unsigned char>(col[1] * 255.0f),
+                       static_cast<unsigned char>(col[2] * 255.0f),
+                       static_cast<unsigned char>(col[3] * 255.0f)});
+        }
+      };
+
+      editColor("Minimum Pressure Color", simulation.getMinPressureColor(),
+                [&](Color c) { simulation.setMinPressureColor(c); });
+
+      editColor("Maximum Pressure Color", simulation.getMaxPressureColor(),
+                [&](Color c) { simulation.setMaxPressureColor(c); });
 
       ImGui::End();
     }

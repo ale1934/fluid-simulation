@@ -168,7 +168,8 @@ void FluidSimulation::render() const {
   if (showSmoothingRadius) {
     for (const Particle &p : particles) {
       const float normalized = Clamp(p.pressure / 60.0f, 0.0f, 1.0f);
-      const Color color = ColorLerp(BLUE, RED, normalized);
+      const Color color =
+          ColorLerp(minPressureColor, maxPressureColor, normalized);
 
       DrawCircleLines(static_cast<int>(p.position.x),
                       static_cast<int>(p.position.y), smoothingRadius,
