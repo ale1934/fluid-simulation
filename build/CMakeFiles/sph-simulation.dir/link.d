@@ -4,12 +4,15 @@ sph-simulation: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/sph-simulation.dir/src/main.cpp.o \
   CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o \
+  CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o \
   CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o \
   CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o \
   CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o \
   CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o \
   CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o \
   /usr/lib/libraylib.so.6.2.0 \
+  /usr/lib/libgomp.so \
+  /usr/lib/libpthread.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libm.so \
@@ -40,10 +43,14 @@ sph-simulation: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtendS.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o \
+  /usr/lib32/libX11.so.6 \
   /usr/lib/libX11.so.6 \
   /usr/lib/ld-linux-x86-64.so.2 \
+  /usr/lib32/libxcb.so.1 \
   /usr/lib/libxcb.so.1 \
+  /usr/lib32/libXau.so.6 \
   /usr/lib/libXau.so.6 \
+  /usr/lib32/libXdmcp.so.6 \
   /usr/lib/libXdmcp.so.6
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/Scrt1.o:
@@ -56,6 +63,8 @@ CMakeFiles/sph-simulation.dir/src/main.cpp.o:
 
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o:
 
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o:
+
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o:
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o:
@@ -67,6 +76,10 @@ CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o:
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o:
 
 /usr/lib/libraylib.so.6.2.0:
+
+/usr/lib/libgomp.so:
+
+/usr/lib/libpthread.a:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 
@@ -128,12 +141,20 @@ CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crtn.o:
 
+/usr/lib32/libX11.so.6:
+
 /usr/lib/libX11.so.6:
 
 /usr/lib/ld-linux-x86-64.so.2:
 
+/usr/lib32/libxcb.so.1:
+
 /usr/lib/libxcb.so.1:
 
+/usr/lib32/libXau.so.6:
+
 /usr/lib/libXau.so.6:
+
+/usr/lib32/libXdmcp.so.6:
 
 /usr/lib/libXdmcp.so.6:

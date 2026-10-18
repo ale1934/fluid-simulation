@@ -1,5 +1,6 @@
 #include "fluidsimulation.hpp"
 #include "SPHKernels.hpp"
+#include <raylib.h>
 
 void FluidSimulation::calculateDensities() {
 #pragma omp parallel for schedule(static)
@@ -101,33 +102,87 @@ void FluidSimulation::calculateViscosityForces() {
   }
 }
 
-FluidSimulation::FluidSimulation(int particleCount, float boundaryWidth,
-                                 float boundaryHeight) {
+void FluidSimulation::solveParticleCollisions() {
+  const float minDistance = particleRadius * 1.5f;
+  const float minDistanceSquared = minDistance * minDistance;
+
+#pragma omp parallel for schedule(static)
+  for (std::size_t i = 0; i < particles.size(); ++i) {
+    Particle &p = particles[i];
+
+    spatialGrid.forEachNearby(p.position, [&](std::size_t j) {
+      const Particle &other = particles[j];
+
+      if (&p == &other) {
+        return;
+      }
+
+      Vector2 delta = {p.position.x - other.position.x,
+                       p.position.y - other.position.y};
+
+      float distanceSquared = delta.x * delta.x + delta.y * delta.y;
+
+      if (distanceSquared >= minDistanceSquared || distanceSquared < 0.0001f) {
+        return;
+      }
+
+      float distance = sqrtf(distanceSquared);
+      float overlap = minDistance - distance;
+      float correction = overlap * 0.5f / distance;
+
+      p.position.x += delta.x * correction;
+      p.position.y += delta.y * correction;
+    });
+  }
+}
+
+FluidSimulation::FluidSimulation(int particleCount, Vector2 boundaryPosition,
+                                 float boundaryWidth, float boundaryHeight) {
   particles.reserve(particleCount);
+
+  position = boundaryPosition;
   width = boundaryWidth;
   height = boundaryHeight;
 
-  const int columns = 80;
   const float spacing = particleRadius * 2.0f;
+  const float aspectRatio = width / height;
+
+  const int columns =
+      static_cast<int>(std::ceil(std::sqrt(particleCount * aspectRatio)));
+  const int rows =
+      static_cast<int>(std::ceil(static_cast<float>(particleCount) / columns));
+
+  // Center the particle grid inside the boundary.
+  const float gridWidth = (columns - 1) * spacing;
+  const float gridHeight = (rows - 1) * spacing;
+
+  const float startX = position.x + (width - gridWidth) * 0.5f;
+  const float startY = position.y + (height - gridHeight) * 0.5f;
 
   for (int i = 0; i < particleCount; ++i) {
     Particle p;
 
-    p.position = {50 + (i % columns) * spacing,
-                  50 + ((float)i / columns) * spacing};
+    const int column = i % columns;
+    const int row = i / columns;
+
+    p.position = {startX + column * spacing, startY + row * spacing};
 
     particles.push_back(p);
   }
 }
 
 void FluidSimulation::update(double dt) {
-  spatialGrid.configure(width, height, smoothingRadius);
+  if (paused)
+    return;
+
+  spatialGrid.configure(position, width, height, smoothingRadius);
   spatialGrid.rebuild(particles);
 
   calculateDensities();
   calculatePressures();
   calculatePressureForces();
   calculateViscosityForces();
+  solveParticleCollisions();
 
   for (Particle &p : particles) {
     // Semi-implicit Euler integration.
@@ -138,24 +193,24 @@ void FluidSimulation::update(double dt) {
     p.position.y += p.velocity.y * dt;
 
     // Left and right walls.
-    if (p.position.x < particleRadius) {
-      p.position.x = particleRadius;
+    if (p.position.x < particleRadius + position.x) {
+      p.position.x = particleRadius + position.x;
       p.velocity.x *= -0.7f;
     }
 
-    if (p.position.x > width - particleRadius) {
-      p.position.x = width - particleRadius;
+    if (p.position.x > width - particleRadius + position.x) {
+      p.position.x = width - particleRadius + position.x;
       p.velocity.x *= -0.7f;
     }
 
     // Top and bottom walls.
-    if (p.position.y < particleRadius) {
-      p.position.y = particleRadius;
+    if (p.position.y < particleRadius + position.y) {
+      p.position.y = particleRadius + position.y;
       p.velocity.y *= -0.7f;
     }
 
-    if (p.position.y + particleRadius > height) {
-      p.position.y = height - particleRadius;
+    if (p.position.y + particleRadius > height + position.y) {
+      p.position.y = height - particleRadius + position.y;
 
       if (p.velocity.y > 0.0f) {
         p.velocity.y *= -0.8f;
@@ -165,6 +220,12 @@ void FluidSimulation::update(double dt) {
 }
 
 void FluidSimulation::render() const {
+  DrawRectangleLines(position.x, position.y, static_cast<int>(width),
+                     static_cast<int>(height), WHITE);
+
+  if (paused)
+    return;
+
   if (showSmoothingRadius) {
     for (const Particle &p : particles) {
       const float normalized = Clamp(p.pressure / 60.0f, 0.0f, 1.0f);
@@ -176,15 +237,44 @@ void FluidSimulation::render() const {
                       Fade(color, 0.15f));
     }
   }
-
-  DrawRectangleLines(0, 0, static_cast<int>(width), static_cast<int>(height),
-                     WHITE);
 }
 
-void FluidSimulation::handleMouse(Vector2 mousePosition, bool isDragging) {
-  mouseGrab = isDragging;
+void FluidSimulation::handleMouse(Vector2 mousePosition, bool isDraggingLeft,
+                                  bool isDraggingRight) {
+  mouseGrab = isDraggingLeft;
 
-  if (!mouseGrab) {
+  // Start dragging the boundary when right-clicking inside it.
+  if (isDraggingRight && !boundaryGrab) {
+    Rectangle boundary = {position.x, position.y, width, height};
+
+    if (CheckCollisionPointRec(mousePosition, boundary)) {
+      boundaryGrab = true;
+
+      boundaryGrabOffset = {mousePosition.x - position.x,
+                            mousePosition.y - position.y};
+    }
+  }
+
+  // Stop dragging when the right mouse button is released.
+  if (!isDraggingRight) {
+    boundaryGrab = false;
+  }
+
+  // Move the boundary while dragging.
+  if (boundaryGrab && isDraggingRight) {
+    position = {mousePosition.x - boundaryGrabOffset.x,
+                mousePosition.y - boundaryGrabOffset.y};
+    return;
+  }
+
+  // Don't apply particle forces while right-clicking.
+  if (!mouseGrab || isDraggingRight) {
+    return;
+  }
+
+  Rectangle boundary = {position.x, position.y, width, height};
+
+  if (!CheckCollisionPointRec(mousePosition, boundary)) {
     return;
   }
 
@@ -200,18 +290,24 @@ void FluidSimulation::handleMouse(Vector2 mousePosition, bool isDragging) {
     }
 
     float distance = sqrtf(distanceSquared);
-
-    // Strongest near the mouse, fading toward the edge.
     float falloff = 1.0f - distance / mouseRadius;
-
     float force = mouseStrength * falloff;
 
-    p.velocity.x += (delta.x / distance) * force * GetFrameTime();
-    p.velocity.y += (delta.y / distance) * force * GetFrameTime();
+    p.velocity.x += delta.x / distance * force * GetFrameTime();
+    p.velocity.y += delta.y / distance * force * GetFrameTime();
   }
 }
 
+bool FluidSimulation::checkIfMouseOnSim(Vector2 mousePosition) {
+  return CheckCollisionPointRec(mousePosition,
+                                {position.x, position.y, width, height});
+}
+
 // Setters -- Getters for UI -------------------------------------------------
+bool FluidSimulation::getPaused() const { return paused; }
+
+void FluidSimulation::setPaused(bool value) { paused = value; }
+
 float FluidSimulation::getGravity() const { return gravity.y; }
 
 void FluidSimulation::setGravity(float value) { gravity.y = value; }

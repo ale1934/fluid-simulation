@@ -9,7 +9,7 @@
 
 class SpatialGrid {
 public:
-  void configure(float width, float height, float cellSize) {
+  void configure(Vector2 origin, float width, float height, float cellSize) {
     cellSize = std::max(cellSize, 1.0f);
 
     const int newColumns =
@@ -18,8 +18,10 @@ public:
         std::max(1, static_cast<int>(std::ceil(height / cellSize)));
 
     if (newColumns != columns || newRows != rows ||
-        cellSize != this->cellSize) {
+        cellSize != this->cellSize || origin.x != this->origin.x ||
+        origin.y != this->origin.y) {
       this->cellSize = cellSize;
+      this->origin = origin;
       columns = newColumns;
       rows = newRows;
       cells.clear();
@@ -61,14 +63,16 @@ private:
   int columns = 0;
   int rows = 0;
   std::vector<std::vector<std::size_t>> cells;
+  Vector2 origin = {0.0f, 0.0f};
 
   int cellX(float x) const {
-    return std::clamp(static_cast<int>(std::floor(x / cellSize)), 0,
-                      columns - 1);
+    return std::clamp(static_cast<int>(std::floor((x - origin.x) / cellSize)),
+                      0, columns - 1);
   }
 
   int cellY(float y) const {
-    return std::clamp(static_cast<int>(std::floor(y / cellSize)), 0, rows - 1);
+    return std::clamp(static_cast<int>(std::floor((y - origin.y) / cellSize)),
+                      0, rows - 1);
   }
 
   std::size_t index(int x, int y) const {

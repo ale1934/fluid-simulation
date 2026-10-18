@@ -1,8 +1,8 @@
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: \
- /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.cpp \
+ /home/ale/Programming/fluid-simulation/src/fluidsimulation.cpp \
  /usr/include/stdc-predef.h \
- /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.hpp \
- /home/ale/Programming/SPH-fluid-simulation/src/particle.hpp \
+ /home/ale/Programming/fluid-simulation/src/fluidsimulation.hpp \
+ /home/ale/Programming/fluid-simulation/src/particle.hpp \
  /usr/include/raylib.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
  /usr/include/raymath.h /usr/include/c++/16/math.h \
@@ -75,7 +75,7 @@ CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: \
  /usr/include/c++/16/tr1/poly_hermite.tcc \
  /usr/include/c++/16/tr1/poly_laguerre.tcc \
  /usr/include/c++/16/tr1/riemann_zeta.tcc \
- /home/ale/Programming/SPH-fluid-simulation/src/spatialgrid.hpp \
+ /home/ale/Programming/fluid-simulation/src/spatialgrid.hpp \
  /usr/include/c++/16/algorithm /usr/include/c++/16/bits/stl_algo.h \
  /usr/include/c++/16/bits/algorithmfwd.h \
  /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/stl_heap.h \
@@ -104,4 +104,4 @@ CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: \
  /usr/include/c++/16/bits/uses_allocator.h \
  /usr/include/c++/16/bits/uses_allocator_args.h /usr/include/c++/16/tuple \
  /usr/include/c++/16/bits/invoke.h \
- /home/ale/Programming/SPH-fluid-simulation/src/SPHKernels.hpp
+ /home/ale/Programming/fluid-simulation/src/SPHKernels.hpp

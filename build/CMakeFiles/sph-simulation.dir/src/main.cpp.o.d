@@ -1,12 +1,13 @@
 CMakeFiles/sph-simulation.dir/src/main.cpp.o: \
- /home/ale/Programming/SPH-fluid-simulation/src/main.cpp \
+ /home/ale/Programming/fluid-simulation/src/main.cpp \
  /usr/include/stdc-predef.h \
- /home/ale/Programming/SPH-fluid-simulation/src/../external/rlImGui/rlImGui.h \
+ /home/ale/Programming/fluid-simulation/src/../external/rlImGui/rlImGui.h \
  /usr/include/raylib.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
- /home/ale/Programming/SPH-fluid-simulation/src/../external/rlImGui/extras/IconsFontAwesome6.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imconfig.h \
+ /home/ale/Programming/fluid-simulation/src/../external/rlImGui/extras/IconsFontAwesome6.h \
+ /home/ale/Programming/fluid-simulation/src/../external/rlImGui/rlImGuiColors.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
  /usr/include/string.h /usr/include/bits/libc-header-start.h \
@@ -16,8 +17,9 @@ CMakeFiles/sph-simulation.dir/src/main.cpp.o: \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/assert.h \
- /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.hpp \
- /home/ale/Programming/SPH-fluid-simulation/src/particle.hpp \
+ /home/ale/Programming/fluid-simulation/src/particlerenderer.hpp \
+ /home/ale/Programming/fluid-simulation/src/fluidsimulation.hpp \
+ /home/ale/Programming/fluid-simulation/src/particle.hpp \
  /usr/include/raymath.h /usr/include/c++/16/math.h \
  /usr/include/c++/16/cmath /usr/include/c++/16/bits/requires_hosted.h \
  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -81,7 +83,7 @@ CMakeFiles/sph-simulation.dir/src/main.cpp.o: \
  /usr/include/c++/16/tr1/poly_hermite.tcc \
  /usr/include/c++/16/tr1/poly_laguerre.tcc \
  /usr/include/c++/16/tr1/riemann_zeta.tcc \
- /home/ale/Programming/SPH-fluid-simulation/src/spatialgrid.hpp \
+ /home/ale/Programming/fluid-simulation/src/spatialgrid.hpp \
  /usr/include/c++/16/algorithm /usr/include/c++/16/bits/stl_algo.h \
  /usr/include/c++/16/bits/algorithmfwd.h \
  /usr/include/c++/16/initializer_list /usr/include/c++/16/bits/stl_heap.h \
@@ -109,4 +111,5 @@ CMakeFiles/sph-simulation.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/memory_resource.h \
  /usr/include/c++/16/bits/uses_allocator.h \
  /usr/include/c++/16/bits/uses_allocator_args.h /usr/include/c++/16/tuple \
- /usr/include/c++/16/bits/invoke.h
+ /usr/include/c++/16/bits/invoke.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/omp.h

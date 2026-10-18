@@ -1,8 +1,8 @@
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp \
  /usr/include/stdc-predef.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imconfig.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
@@ -13,7 +13,7 @@ CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/assert.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_internal.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_internal.h \
  /usr/include/stdio.h /usr/include/bits/types.h \
  /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
@@ -202,5 +202,5 @@ CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
  /usr/include/bits/stdint-uintn.h /usr/include/bits/stdint-least.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imstb_rectpack.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imstb_truetype.h
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imstb_rectpack.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imstb_truetype.h

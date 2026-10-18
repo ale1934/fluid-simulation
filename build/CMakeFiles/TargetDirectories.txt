@@ -1,3 +1,3 @@
-/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles/sph-simulation.dir
-/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles/edit_cache.dir
-/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles/rebuild_cache.dir
+/home/ale/Programming/fluid-simulation/build/CMakeFiles/sph-simulation.dir
+/home/ale/Programming/fluid-simulation/build/CMakeFiles/edit_cache.dir
+/home/ale/Programming/fluid-simulation/build/CMakeFiles/rebuild_cache.dir

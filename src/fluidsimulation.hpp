@@ -8,6 +8,8 @@ private:
   Vector2 gravity = {0.0f, 0.0f};
   SpatialGrid spatialGrid;
 
+  Vector2 position = {0, 0};
+
   float width = 400.0f;
   float height = 400.0f;
   float particleRadius = 3.0f;
@@ -22,6 +24,8 @@ private:
   float mouseStrength = 1500.0f;
   bool mouseGrab = false;
 
+  bool paused = false;
+
   bool showSmoothingRadius = false;
   bool showParticles = true;
 
@@ -30,20 +34,31 @@ private:
 
   float pressureDivisor = 50.0f;
 
+  bool boundaryGrab = false;
+  Vector2 boundaryGrabOffset = {0.0f, 0.0f};
+
   void calculateDensities();
   void calculatePressures();
   void calculatePressureForces();
   void calculateViscosityForces();
+  void solveParticleCollisions();
 
 public:
-  FluidSimulation(int particleCount, float boundaryWidth, float boundaryHeight);
+  FluidSimulation(int particleCount, Vector2 boundaryPosition,
+                  float boundaryWidth, float boundaryHeight);
 
   void update(double dt);
   void render() const;
 
-  void handleMouse(Vector2 mousePosition, bool isDragging);
+  void handleMouse(Vector2 mousePosition, bool isDraggingLeft,
+                   bool isDraggingRight);
+
+  bool checkIfMouseOnSim(Vector2 mousePosition);
 
   // Parameters
+  bool getPaused() const;
+  void setPaused(bool value);
+
   float getGravity() const;
   void setGravity(float value);
 

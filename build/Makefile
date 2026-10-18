@@ -57,10 +57,10 @@ RM = /usr/sbin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ale/Programming/SPH-fluid-simulation
+CMAKE_SOURCE_DIR = /home/ale/Programming/fluid-simulation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ale/Programming/SPH-fluid-simulation/build
+CMAKE_BINARY_DIR = /home/ale/Programming/fluid-simulation/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/ale/Programming/SPH-fluid-simulation/build
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/usr/sbin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles /home/ale/Programming/SPH-fluid-simulation/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ale/Programming/fluid-simulation/build/CMakeFiles /home/ale/Programming/fluid-simulation/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ale/Programming/fluid-simulation/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -297,6 +297,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sph-simulation.dir/build.make CMakeFiles/sph-simulation.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/particlerenderer.o: src/particlerenderer.cpp.o
+.PHONY : src/particlerenderer.o
+
+# target to build an object file
+src/particlerenderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sph-simulation.dir/build.make CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o
+.PHONY : src/particlerenderer.cpp.o
+
+src/particlerenderer.i: src/particlerenderer.cpp.i
+.PHONY : src/particlerenderer.i
+
+# target to preprocess a source file
+src/particlerenderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sph-simulation.dir/build.make CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.i
+.PHONY : src/particlerenderer.cpp.i
+
+src/particlerenderer.s: src/particlerenderer.cpp.s
+.PHONY : src/particlerenderer.s
+
+# target to generate assembly for a file
+src/particlerenderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sph-simulation.dir/build.make CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.s
+.PHONY : src/particlerenderer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -327,6 +351,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/particlerenderer.o"
+	@echo "... src/particlerenderer.i"
+	@echo "... src/particlerenderer.s"
 .PHONY : help
 
 

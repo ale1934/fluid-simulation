@@ -53,10 +53,10 @@ RM = /usr/sbin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ale/Programming/SPH-fluid-simulation
+CMAKE_SOURCE_DIR = /home/ale/Programming/fluid-simulation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ale/Programming/SPH-fluid-simulation/build
+CMAKE_BINARY_DIR = /home/ale/Programming/fluid-simulation/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sph-simulation.dir/depend.make
@@ -73,107 +73,122 @@ CMakeFiles/sph-simulation.dir/codegen:
 .PHONY : CMakeFiles/sph-simulation.dir/codegen
 
 CMakeFiles/sph-simulation.dir/src/main.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/src/main.cpp.o: /home/ale/Programming/SPH-fluid-simulation/src/main.cpp
+CMakeFiles/sph-simulation.dir/src/main.cpp.o: /home/ale/Programming/fluid-simulation/src/main.cpp
 CMakeFiles/sph-simulation.dir/src/main.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sph-simulation.dir/src/main.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/src/main.cpp.o -MF CMakeFiles/sph-simulation.dir/src/main.cpp.o.d -o CMakeFiles/sph-simulation.dir/src/main.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sph-simulation.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/src/main.cpp.o -MF CMakeFiles/sph-simulation.dir/src/main.cpp.o.d -o CMakeFiles/sph-simulation.dir/src/main.cpp.o -c /home/ale/Programming/fluid-simulation/src/main.cpp
 
 CMakeFiles/sph-simulation.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/src/main.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/src/main.cpp > CMakeFiles/sph-simulation.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/src/main.cpp > CMakeFiles/sph-simulation.dir/src/main.cpp.i
 
 CMakeFiles/sph-simulation.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/src/main.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/src/main.cpp -o CMakeFiles/sph-simulation.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/src/main.cpp -o CMakeFiles/sph-simulation.dir/src/main.cpp.s
 
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.cpp
+CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: /home/ale/Programming/fluid-simulation/src/fluidsimulation.cpp
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o -MF CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o.d -o CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o -MF CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o.d -o CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o -c /home/ale/Programming/fluid-simulation/src/fluidsimulation.cpp
 
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.cpp > CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/src/fluidsimulation.cpp > CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.i
 
 CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/src/fluidsimulation.cpp -o CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/src/fluidsimulation.cpp -o CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.s
+
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o: /home/ale/Programming/fluid-simulation/src/particlerenderer.cpp
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o -MF CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o.d -o CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o -c /home/ale/Programming/fluid-simulation/src/particlerenderer.cpp
+
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/src/particlerenderer.cpp > CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.i
+
+CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/src/particlerenderer.cpp -o CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.s
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.cpp
+CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.cpp
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o -c /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.cpp
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.i
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.s
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o: /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.cpp
+CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o: /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.cpp
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o -c /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.cpp
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.i
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.s
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp
+CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o -c /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.i
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_draw.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.s
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o: /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp
+CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o: /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.o -c /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.i
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_tables.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_tables.cpp.s
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o: CMakeFiles/sph-simulation.dir/flags.make
-CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o: /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp
+CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o: /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o: CMakeFiles/sph-simulation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o -c /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o -MF CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.o -c /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.i"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp > CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.i
 
 CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.s"
-	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui_widgets.cpp -o CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widgets.cpp.s
 
 # Object files for target sph-simulation
 sph__simulation_OBJECTS = \
 "CMakeFiles/sph-simulation.dir/src/main.cpp.o" \
 "CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o" \
+"CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o" \
 "CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o" \
 "CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o" \
 "CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o" \
@@ -185,6 +200,7 @@ sph__simulation_EXTERNAL_OBJECTS =
 
 sph-simulation: CMakeFiles/sph-simulation.dir/src/main.cpp.o
 sph-simulation: CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o
+sph-simulation: CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o
 sph-simulation: CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o
 sph-simulation: CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui.cpp.o
 sph-simulation: CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_draw.cpp.o
@@ -193,8 +209,10 @@ sph-simulation: CMakeFiles/sph-simulation.dir/external/rlImGui/imgui/imgui_widge
 sph-simulation: CMakeFiles/sph-simulation.dir/build.make
 sph-simulation: CMakeFiles/sph-simulation.dir/compiler_depend.ts
 sph-simulation: /usr/lib/libraylib.so.6.2.0
+sph-simulation: /usr/lib/libgomp.so
+sph-simulation: /usr/lib/libpthread.a
 sph-simulation: CMakeFiles/sph-simulation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable sph-simulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ale/Programming/fluid-simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable sph-simulation"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sph-simulation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -206,6 +224,6 @@ CMakeFiles/sph-simulation.dir/clean:
 .PHONY : CMakeFiles/sph-simulation.dir/clean
 
 CMakeFiles/sph-simulation.dir/depend:
-	cd /home/ale/Programming/SPH-fluid-simulation/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ale/Programming/SPH-fluid-simulation /home/ale/Programming/SPH-fluid-simulation /home/ale/Programming/SPH-fluid-simulation/build /home/ale/Programming/SPH-fluid-simulation/build /home/ale/Programming/SPH-fluid-simulation/build/CMakeFiles/sph-simulation.dir/DependInfo.cmake "--color=$(COLOR)" sph-simulation
+	cd /home/ale/Programming/fluid-simulation/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ale/Programming/fluid-simulation /home/ale/Programming/fluid-simulation /home/ale/Programming/fluid-simulation/build /home/ale/Programming/fluid-simulation/build /home/ale/Programming/fluid-simulation/build/CMakeFiles/sph-simulation.dir/DependInfo.cmake "--color=$(COLOR)" sph-simulation
 .PHONY : CMakeFiles/sph-simulation.dir/depend
 

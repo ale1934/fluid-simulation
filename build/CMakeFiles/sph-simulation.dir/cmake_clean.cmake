@@ -14,6 +14,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sph-simulation.dir/src/fluidsimulation.cpp.o.d"
   "CMakeFiles/sph-simulation.dir/src/main.cpp.o"
   "CMakeFiles/sph-simulation.dir/src/main.cpp.o.d"
+  "CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o"
+  "CMakeFiles/sph-simulation.dir/src/particlerenderer.cpp.o.d"
   "sph-simulation"
   "sph-simulation.pdb"
 )

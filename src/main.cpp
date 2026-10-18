@@ -8,7 +8,7 @@
 #include <raylib.h>
 
 int main() {
-  const int screenWidth = 780;
+  const int screenWidth = 1000;
   const int screenHeight = 640;
 
   InitWindow(screenWidth, screenHeight, "Particle Simulation");
@@ -21,10 +21,19 @@ int main() {
 
   rlImGuiSetup(true);
 
-  FluidSimulation simulation(7000, screenWidth, screenHeight + 20);
+  std::vector<FluidSimulation> simulations;
+
+  FluidSimulation *selectedSimulation = nullptr;
+  int selectedSimulationIndex = -1;
 
   bool showUI = false;
-  bool paused = false;
+  bool showCreateSim = false;
+
+  Vector2 createSimPosition = {0.0f, 0.0f};
+
+  int createWidth = 300;
+  int createHeight = 300;
+  int createMaxParticles = 800;
 
   bool showFps = false;
 
@@ -39,101 +48,126 @@ int main() {
     const bool imguiWantsMouse = ImGui::GetIO().WantCaptureMouse;
 
     // Update the simulation unless paused.
-    if (!paused) {
-      float dt = std::min(GetFrameTime(), 1.0f / GetFPS());
+    float dt = std::min(GetFrameTime(), 1.0f / GetFPS());
 
-      if (!imguiWantsMouse) {
-        Vector2 mousePosition = GetMousePosition();
+    if (!imguiWantsMouse) {
+      Vector2 mousePosition = GetMousePosition();
 
-        // Around the simulation step:
-        simulation.handleMouse(mousePosition,
-                               IsMouseButtonDown(MOUSE_BUTTON_LEFT));
+      // Right-click once to select a simulation or open the create menu.
+      if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+        bool clickedSimulation = false;
 
-      } else {
-        simulation.handleMouse(GetMousePosition(), false);
+        for (size_t i = 0; i < simulations.size(); ++i) {
+          if (simulations[i].checkIfMouseOnSim(mousePosition)) {
+            selectedSimulation = &simulations[i];
+            selectedSimulationIndex = static_cast<int>(i);
+            clickedSimulation = true;
+            showCreateSim = false;
+            break;
+          }
+        }
+
+        if (!clickedSimulation) {
+          createSimPosition = mousePosition;
+          showCreateSim = true;
+        }
       }
 
-      simulation.update(dt);
+      for (auto &s : simulations) {
+        s.handleMouse(mousePosition, IsMouseButtonDown(MOUSE_BUTTON_LEFT),
+                      IsMouseButtonDown(MOUSE_BUTTON_MIDDLE));
+      }
+    } else {
+      for (auto &s : simulations) {
+        s.handleMouse(GetMousePosition(), false, false);
+      }
     }
+
+    for (auto &s : simulations)
+      s.update(dt);
 
     BeginDrawing();
     ClearBackground(BLACK);
 
-    if (simulation.getShowParticles()) {
-      particleRenderer.draw(simulation.getParticles(),
-                            static_cast<float>(screenWidth),
-                            static_cast<float>(screenHeight),
-                            simulation.getParticleRadius(), simulation);
-    }
+    for (auto &s : simulations) {
+      if (s.getShowParticles()) {
+        particleRenderer.draw(s.getParticles(), static_cast<float>(screenWidth),
+                              static_cast<float>(screenHeight),
+                              s.getParticleRadius(), s);
+      }
 
-    simulation.render();
+      s.render();
+    }
 
     if (showFps)
       DrawFPS(10, 10);
 
-    if (showUI) {
+    if (showUI && selectedSimulation != nullptr) {
       ImGui::Begin("SPH Simulation Controls", &showUI);
 
-      ImGui::Text("Simulation");
+      ImGui::Text("Simulation %d", selectedSimulationIndex);
       ImGui::Separator();
 
-      ImGui::Checkbox("Pause simulation", &paused);
+      bool paused = selectedSimulation->getPaused();
+      if (ImGui::Checkbox("Pause simulation", &paused)) {
+        selectedSimulation->setPaused(paused);
+      }
 
       ImGui::Spacing();
       ImGui::Text("Physics Parameters");
 
-      float gravity = simulation.getGravity();
+      float gravity = selectedSimulation->getGravity();
       if (ImGui::SliderFloat("Gravity", &gravity, 0.0f, 200.0f)) {
-        simulation.setGravity(gravity);
+        selectedSimulation->setGravity(gravity);
       }
 
-      float targetDensity = simulation.getTargetDensity();
+      float targetDensity = selectedSimulation->getTargetDensity();
       if (ImGui::SliderFloat("Target Density", &targetDensity, 0.001f, 0.15f,
                              "%.4f")) {
-        simulation.setTargetDensity(targetDensity);
+        selectedSimulation->setTargetDensity(targetDensity);
       }
 
-      float stiffness = simulation.getPressureStiffness();
+      float stiffness = selectedSimulation->getPressureStiffness();
       if (ImGui::SliderFloat("Pressure Stiffness", &stiffness, 0.0f,
                              10000.0f)) {
-        simulation.setPressureStiffness(stiffness);
+        selectedSimulation->setPressureStiffness(stiffness);
       }
 
-      float smoothingRadius = simulation.getSmoothingRadius();
+      float smoothingRadius = selectedSimulation->getSmoothingRadius();
       if (ImGui::SliderFloat("Smoothing Radius", &smoothingRadius, 5.0f,
                              50.0f)) {
-        simulation.setSmoothingRadius(smoothingRadius);
+        selectedSimulation->setSmoothingRadius(smoothingRadius);
       }
 
-      float viscosity = simulation.getViscosity();
+      float viscosity = selectedSimulation->getViscosity();
       if (ImGui::SliderFloat("Viscosity", &viscosity, 0.0f, 1000.0f, "%.1f")) {
-        simulation.setViscosity(viscosity);
+        selectedSimulation->setViscosity(viscosity);
       }
 
-      float radius = simulation.getMouseRadius();
+      float radius = selectedSimulation->getMouseRadius();
       if (ImGui::SliderFloat("Mouse Radius", &radius, 20.0f, 250.0f)) {
-        simulation.setMouseRadius(radius);
+        selectedSimulation->setMouseRadius(radius);
       }
 
-      float strength = simulation.getMouseStrength();
+      float strength = selectedSimulation->getMouseStrength();
       if (ImGui::SliderFloat("Mouse Strength", &strength, 100.0f, 5000.0f)) {
-        simulation.setMouseStrength(strength);
+        selectedSimulation->setMouseStrength(strength);
       }
 
-      float pressureDivisor = simulation.getPressureDivisor();
+      float pressureDivisor = selectedSimulation->getPressureDivisor();
       if (ImGui::SliderFloat("Pressure Divisor", &pressureDivisor, 50.f,
                              300.0f)) {
-        simulation.setPressureDivisor(pressureDivisor);
+        selectedSimulation->setPressureDivisor(pressureDivisor);
       }
 
-      bool showSmoothingRadius = simulation.getShowSmoothingRadius();
+      bool showSmoothingRadius = selectedSimulation->getShowSmoothingRadius();
       if (ImGui::Checkbox("Show Smoothing Radius", &showSmoothingRadius)) {
-        simulation.setShowSmoothingRadius(showSmoothingRadius);
+        selectedSimulation->setShowSmoothingRadius(showSmoothingRadius);
       }
 
-      bool showParticles = simulation.getShowParticles();
+      bool showParticles = selectedSimulation->getShowParticles();
       if (ImGui::Checkbox("Show Particles", &showParticles)) {
-        simulation.setShowParticles(showParticles);
+        selectedSimulation->setShowParticles(showParticles);
       }
 
       ImGui::Checkbox("Show Fps", &showFps);
@@ -150,13 +184,66 @@ int main() {
         }
       };
 
-      editColor("Minimum Pressure Color", simulation.getMinPressureColor(),
-                [&](Color c) { simulation.setMinPressureColor(c); });
+      editColor("Minimum Pressure Color",
+                selectedSimulation->getMinPressureColor(),
+                [&](Color c) { selectedSimulation->setMinPressureColor(c); });
 
-      editColor("Maximum Pressure Color", simulation.getMaxPressureColor(),
-                [&](Color c) { simulation.setMaxPressureColor(c); });
+      editColor("Maximum Pressure Color",
+                selectedSimulation->getMaxPressureColor(),
+                [&](Color c) { selectedSimulation->setMaxPressureColor(c); });
+
+      ImGui::Spacing();
+      ImGui::Separator();
+
+      if (ImGui::Button("Delete Simulation", ImVec2(-1.0f, 0.0f))) {
+        simulations.erase(simulations.begin() + selectedSimulationIndex);
+
+        selectedSimulation = nullptr;
+        selectedSimulationIndex = -1;
+        showUI = false;
+      }
 
       ImGui::End();
+    } else if (showUI && selectedSimulation == nullptr) {
+      ImGui::Begin("SPH Simulation Controls", &showUI);
+
+      ImGui::Text("No Simulation Selected!");
+      ImGui::End();
+    }
+
+    if (showCreateSim) {
+      ImGui::SetNextWindowPos({createSimPosition.x, createSimPosition.y},
+                              ImGuiCond_Appearing);
+
+      ImGui::SetNextWindowSize({260.0f, 0.0f}, ImGuiCond_Appearing);
+
+      if (ImGui::Begin("Create Simulation", &showCreateSim)) {
+        ImGui::InputInt("Width", &createWidth);
+        ImGui::InputInt("Height", &createHeight);
+        ImGui::InputInt("Max Particles", &createMaxParticles);
+
+        ImGui::Separator();
+
+        if (ImGui::Button("Create", ImVec2(-1.0f, 0.0f))) {
+          if (createWidth > 0 && createHeight > 0 && createMaxParticles > 0) {
+
+            simulations.emplace_back(createMaxParticles, createSimPosition,
+                                     static_cast<float>(createWidth),
+                                     static_cast<float>(createHeight));
+
+            // Adding to the vector can invalidate existing pointers.
+            selectedSimulationIndex = static_cast<int>(simulations.size()) - 1;
+            selectedSimulation = &simulations.back();
+
+            showUI = true;
+            showCreateSim = false;
+          }
+        }
+
+        ImGui::End();
+      } else {
+        ImGui::End();
+      }
     }
 
     rlImGuiEnd();

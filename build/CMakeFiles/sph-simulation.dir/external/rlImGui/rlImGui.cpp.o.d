@@ -1,13 +1,13 @@
 CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.cpp \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.cpp \
  /usr/include/stdc-predef.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/rlImGui.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/rlImGui.h \
  /usr/include/raylib.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/extras/IconsFontAwesome6.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui_impl_raylib.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imgui.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/imgui/imconfig.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/extras/IconsFontAwesome6.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui_impl_raylib.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imgui.h \
+ /home/ale/Programming/fluid-simulation/external/rlImGui/imgui/imconfig.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
  /usr/include/string.h /usr/include/bits/libc-header-start.h \
@@ -83,4 +83,4 @@ CMakeFiles/sph-simulation.dir/external/rlImGui/rlImGui.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
  /usr/include/bits/stdint-uintn.h /usr/include/bits/stdint-least.h \
- /home/ale/Programming/SPH-fluid-simulation/external/rlImGui/extras/FA6FreeSolidFontData.h
+ /home/ale/Programming/fluid-simulation/external/rlImGui/extras/FA6FreeSolidFontData.h
