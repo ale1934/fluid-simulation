@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/ale/Programming/fluid-simulation/build/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
